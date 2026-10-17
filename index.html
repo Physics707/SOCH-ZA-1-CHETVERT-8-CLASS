@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>СОЧ · Физика · 8 класс · 1 четверть</title>
+<style>
+:root{--bg:#0a0e1f;--card:#131b38;--tx:#e9efff;--mut:#93a1c8;--c1:#22e4ff;--c2:#ff4fd8;--ok:#3dff9a;--bad:#ff5470}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 500px at 8% -10%,#24338a55,transparent),var(--bg);color:var(--tx);font:16px/1.5 system-ui,"Segoe UI",Roboto,sans-serif;-webkit-user-select:none;user-select:none}
+.wrap{max-width:820px;margin:0 auto;padding:12px}
+.card{background:var(--card);border:1px solid #2b3c86;border-radius:16px;padding:16px;margin:14px 0;box-shadow:0 0 18px #22e4ff18}
+h1{font-size:22px;margin:.2em 0;color:var(--c1);text-shadow:0 0 12px #22e4ff88}
+h3{margin:0 0 6px;font-size:17px;color:var(--c2);text-shadow:0 0 10px #ff4fd855}
+.br{color:var(--ok);font-weight:700;white-space:nowrap}
+.mut{color:var(--mut);font-size:14px}
+label.f{display:block;margin:12px 0 4px;color:var(--mut);font-size:14px}
+input,select,textarea{width:100%;background:#0c1330;color:var(--tx);border:1px solid #34478f;border-radius:10px;padding:10px;font:inherit;-webkit-user-select:text;user-select:text}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--c1);box-shadow:0 0 12px #22e4ff88}
+button{font:inherit;font-weight:700;color:#06121f;background:linear-gradient(90deg,var(--c1),#7affd8);border:0;border-radius:12px;padding:12px 22px;cursor:pointer;box-shadow:0 0 16px #22e4ff88}
+button:disabled{background:#2a3566;color:#7885b5;box-shadow:none;cursor:not-allowed}
+button.sec{background:#2a3566;color:var(--tx);box-shadow:none}
+.opt{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid #2f3f85;border-radius:10px;margin:6px 0;cursor:pointer}
+.opt input{width:auto}
+.opt:has(input:checked){border-color:var(--c1);box-shadow:0 0 12px var(--c1);background:#0f2a4a}
+.q{margin:4px 0 10px}
+.how{font-size:13px;color:#ffd86b;margin:4px 0 2px}
+.part{margin:14px 0 4px}
+.part>b{display:block;margin-bottom:4px;font-weight:600}
+.gr{width:100%;max-width:520px;display:block;margin:8px auto;border-radius:10px}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.g4{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+figure{margin:0;text-align:center}figure svg{width:100%;border-radius:10px}
+figcaption{font-weight:700;color:var(--c1)}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#bar{position:sticky;top:0;z-index:5;background:#0a0e1fee;backdrop-filter:blur(6px);border-bottom:1px solid #2b3c86;display:flex;justify-content:space-between;align-items:center;padding:8px 12px;gap:8px}
+#tm{font-size:22px;font-weight:800;color:var(--c1);text-shadow:0 0 10px var(--c1);font-variant-numeric:tabular-nums}
+#tm.low{color:var(--bad);text-shadow:0 0 10px var(--bad)}
+#ov{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:9;padding:16px}
+#ov .card{max-width:420px;border-color:var(--bad);box-shadow:0 0 26px #ff547477}
+.hide{display:none!important}
+@media(max-width:520px){.figs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- Окно 1: ввод данных -->
+<div id="s1" class="card">
+  <h1>Суммативное оценивание за 1 четверть</h1>
+  <div class="mut">Физика · 8 класс · 25 баллов · 40 минут<br>Учитель: Кунгозин Даулет Багдашұлы</div>
+  <label class="f">Фамилия и имя</label>
+  <input id="fio" placeholder="Введите ФИ" autocomplete="off">
+  <label class="f">Класс</label>
+  <select id="kl"><option value="">— выберите класс —</option><option>8Б</option><option>8В</option></select>
+  <label class="f">Вариант</label>
+  <select id="vr"><option value="">— выберите вариант —</option><option value="1">Вариант 1</option><option value="2">Вариант 2</option></select>
+  <p><button id="next" disabled>Далее</button></p>
+</div>
+
+<!-- Окно 2: правила -->
+<div id="s2" class="card hide">
+  <h1>Перед началом</h1>
+  <ul>
+    <li>Время на работу — <b>40 минут</b>, таймер общий. По окончании времени работа завершится автоматически.</li>
+    <li>Максимум — <b>25 баллов</b>. Рядом с каждым заданием в квадратных скобках указано число баллов.</li>
+    <li>Если ты <b>свернёшь браузер, переключишь вкладку или уйдёшь со страницы</b> — работа завершится сразу.</li>
+    <li>Если заметно <b>изменишь размер окна</b> (например, откроешь второе окно) — будет предупреждение, при повторном — работа завершится. Экранная клавиатура не считается нарушением.</li>
+    <li>Подсказки и правильные ответы не показываются. Вернуться на предыдущий экран нельзя.</li>
+    <li>Читай под каждым заданием, <b>как именно записать ответ</b>.</li>
+  </ul>
+  <p><button id="go">Начать работу</button></p>
+</div>
+
+<!-- Окно 3: тест -->
+<div id="s3" class="hide">
+  <div id="bar"><div class="mut" id="who"></div><div id="tm">40:00</div><button id="fin" class="sec">Завершить</button></div>
+  <div id="tasks"></div>
+  <div class="card"><button id="fin2">Завершить работу и отправить</button></div>
+</div>
+
+<!-- Окно 4: итог -->
+<div id="s4" class="card hide">
+  <h1>Работа завершена</h1>
+  <div id="res"></div>
+  <p id="st" class="mut"></p>
+  <p><button id="retry" class="hide">Отправить ещё раз</button></p>
+</div>
+</div>
+
+<div id="ov"><div class="card"><h3>⚠ Предупреждение</h3><p id="ovt"></p><button id="ovb">Понятно</button></div></div>
+
+<script>
+/* ===== НАСТРОЙКИ ===== */
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwmpQ9GB2SB4dlKW_zID5Jpbcu0uuadp0Z3MdT11hauT-yQPG61v-jwDPo7_U_Xi3Yo/exec';
+const MINUTES=40, MAXPTS=25;
+
+/* ===== ВСПОМОГАТЕЛЬНОЕ ===== */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const br=n=>`[${n} ${n==1?'балл':n<5?'балла':'баллов'}]`;
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const PROC=['плавление','кристаллизация','нагревание','охлаждение','кипение','конденсация','парообразование'];
+
+/* ===== SVG: ГРАФИКИ В КЛЕТКУ ===== */
+function G(o){
+  const W=o.W||520,H=o.H||340,s=o.s,L=s?34:54,R=16,T=s?14:18,B=s?22:36,fs=s?9:12;
+  const X=v=>L+(v-o.x0)/(o.x1-o.x0)*(W-L-R),Y=v=>H-B-(v-o.y0)/(o.y1-o.y0)*(H-B-T);
+  const mj=(v,st)=>Math.abs(v/st-Math.round(v/st))<1e-6;
+  let g=`<svg viewBox="0 0 ${W} ${H}" class="gr"><rect width="${W}" height="${H}" rx="10" fill="#fffdf5"/>`;
+  for(let v=o.x0;v<=o.x1+1e-9;v+=o.xg)g+=`<path d="M${X(v)} ${T}V${H-B}" stroke="${mj(v,o.xs)?'#7fa0bf':'#cfdbe8'}" stroke-width="${mj(v,o.xs)?1.2:.7}"/>`;
+  for(let v=o.y0;v<=o.y1+1e-9;v+=o.yg)g+=`<path d="M${L} ${Y(v)}H${W-R}" stroke="${mj(v,o.ys)?'#7fa0bf':'#cfdbe8'}" stroke-width="${mj(v,o.ys)?1.2:.7}"/>`;
+  const ya=o.y0<0?0:o.y0;
+  g+=`<path d="M${L} ${Y(ya)}H${W-R+4}M${L} ${H-B}V${T-4}" stroke="#111" stroke-width="2"/><path d="M${W-R+9} ${Y(ya)}l-9 -4v8zM${L} ${T-9}l-4 9h8z" fill="#111"/>`;
+  for(let v=o.x0;v<=o.x1+1e-9;v+=o.xg)if(mj(v,o.xs))g+=`<text x="${X(v)}" y="${H-B+fs+3}" font-size="${fs}" text-anchor="middle" fill="#111" font-weight="600">${v}</text>`;
+  for(let v=o.y0;v<=o.y1+1e-9;v+=o.yg)if(mj(v,o.ys))g+=`<text x="${L-5}" y="${Y(v)+4}" font-size="${fs}" text-anchor="end" fill="#111" font-weight="600">${v}</text>`;
+  (o.ey||[]).forEach(v=>g+=`<path d="M${L} ${Y(v)}H${X(o.x1)}" stroke="#c2185b" stroke-dasharray="4 3" stroke-width="1"/><text x="${L-5}" y="${Y(v)+4}" font-size="${fs}" text-anchor="end" fill="#c2185b" font-weight="800">${v}</text>`);
+  g+=`<polyline points="${o.p.map(q=>X(q[0])+','+Y(q[1])).join(' ')}" fill="none" stroke="#e11d48" stroke-width="${s?3:3.5}" stroke-linejoin="round" stroke-linecap="round"/>`;
+  if(!s)o.p.forEach((q,i)=>{g+=`<circle cx="${X(q[0])}" cy="${Y(q[1])}" r="3.5" fill="#1d4ed8"/>`;if(o.nm)g+=`<text x="${X(q[0])}" y="${Y(q[1])-9}" font-size="15" font-weight="800" text-anchor="middle" fill="#1d4ed8">${o.nm[i]}</text>`});
+  g+=`<text x="${W-R}" y="${Y(ya)-6}" font-size="${fs+1}" text-anchor="end" font-weight="700" fill="#047857">${o.xl}</text><text x="${L+7}" y="${T+8}" font-size="${fs+1}" font-weight="700" fill="#047857">${o.yl}</text></svg>`;
+  return g;
+}
+
+/* ===== SVG: РИСУНКИ ===== */
+const SC={
+fire:'<svg viewBox="0 0 220 150"><rect width="220" height="150" fill="#bfe9ff"/><circle cx="195" cy="20" r="13" fill="#ffe14d"/><rect y="118" width="220" height="32" fill="#58b947"/><path d="M40 40H120M52 40L84 120M108 40L76 120" stroke="#7b4a1e" stroke-width="5" stroke-linecap="round"/><path d="M70 52h36l-5 24q-13 7-26 0z" fill="#3b3f4a"/><path d="M60 122q-14-24 6-38 2 14 11 10-3-16 9-28 5 18 18 30 7 16-4 26z" fill="#ff8a00"/><path d="M72 122q-5-14 8-24 7 9 11 24z" fill="#ffe14d"/><path d="M112 98q8-9 16 0t16 0M112 108q8-9 16 0t16 0" stroke="#e11d48" stroke-width="3" fill="none"/><circle cx="176" cy="62" r="11" fill="#f6c59b"/><path d="M164 58q12-16 24 0z" fill="#3b2a1a"/><path d="M166 74h20l4 30h-28z" fill="#7c3aed"/><path d="M166 80l-20 18M188 80l-4 18" stroke="#f6c59b" stroke-width="5" stroke-linecap="round"/><path d="M170 104l-4 16M184 104l4 16" stroke="#1e3a8a" stroke-width="6" stroke-linecap="round"/></svg>',
+spoons:'<svg viewBox="0 0 220 150"><rect width="220" height="150" fill="#e8f1f7"/><path d="M30 88h160q-8 46-80 46T30 88z" fill="#b8c4cc" stroke="#6b7c88" stroke-width="3"/><path d="M38 92h144q-8 34-72 34T38 92z" fill="#5bb8f0"/><ellipse cx="110" cy="92" rx="72" ry="6" fill="#8fd3ff"/><g stroke-linecap="round" stroke-width="6"><path d="M78 100L52 28" stroke="#9aa5ad"/><path d="M112 100V24" stroke="#b5651d"/><path d="M146 100L172 30" stroke="#e11d48"/></g><ellipse cx="76" cy="104" rx="9" ry="6" fill="#9aa5ad"/><ellipse cx="112" cy="106" rx="9" ry="6" fill="#b5651d"/><ellipse cx="148" cy="104" rx="9" ry="6" fill="#e11d48"/><circle cx="55" cy="38" r="5" fill="#ffd93d"/><circle cx="112" cy="34" r="5" fill="#ffd93d"/><circle cx="168" cy="38" r="5" fill="#ffd93d"/><path d="M60 78q4-8 0-14M100 78q4-8 0-14M150 78q4-8 0-14" stroke="#fff" stroke-width="3" fill="none"/></svg>',
+samovar:'<svg viewBox="0 0 220 150"><rect width="220" height="150" fill="#fff4d6"/><path d="M70 58h80q16 36 0 62H70q-16-26 0-62z" fill="#d99a2b" stroke="#8a5a12" stroke-width="3"/><rect x="92" y="44" width="36" height="14" rx="5" fill="#b9791a"/><rect x="104" y="32" width="12" height="14" fill="#8a5a12"/><rect x="82" y="120" width="56" height="12" rx="3" fill="#6b4410"/><path d="M150 86h20l4 8" stroke="#8a5a12" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M100 24q-10-8 0-14t12 2M122 26q12-8 4-16" stroke="#aab" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M110 108V78" stroke="#e11d48" stroke-width="4"/><path d="M104 83l6-10 6 10z" fill="#e11d48"/><path d="M88 76v26M132 76v26" stroke="#2563eb" stroke-width="4"/><path d="M82 97l6 10 6-10zM126 97l6 10 6-10z" fill="#2563eb"/></svg>',
+sun:'<svg viewBox="0 0 220 150"><rect width="220" height="150" fill="#9fdcff"/><circle cx="110" cy="30" r="17" fill="#ffd400"/><path d="M110 6v8M110 46v8M86 30h8M126 30h8M93 13l6 6M127 13l-6 6M93 47l6-6M127 47l-6-6" stroke="#ffb400" stroke-width="4" stroke-linecap="round"/><path d="M120 54q22 16 36 36" stroke="#e11d48" stroke-width="3.5" fill="none" stroke-dasharray="7 4"/><path d="M100 54q-22 16 -36 36" stroke="#e11d48" stroke-width="3.5" fill="none" stroke-dasharray="7 4"/><path d="M0 124h220v26H0z" fill="#ffe08a"/><circle cx="56" cy="100" r="12" fill="#f6c59b"/><rect x="42" y="112" width="28" height="32" rx="6" fill="#fde047"/><circle cx="164" cy="100" r="12" fill="#f6c59b"/><rect x="150" y="112" width="28" height="32" rx="6" fill="#6366f1"/><path d="M180 92q5 6 0 12" stroke="#38bdf8" stroke-width="3.5" fill="none"/></svg>',
+pot:'<svg viewBox="0 0 220 150"><rect width="220" height="150" fill="#eef2f7"/><rect x="60" y="128" width="100" height="14" rx="4" fill="#4b5563"/><path d="M86 126q-6-14 6-22 2 8 8 6 0-10 8-16 4 12 12 18 4 10-4 14z" fill="#ff7a00"/><path d="M94 126q-2-8 6-14 5 6 6 14z" fill="#ffe14d"/><path d="M58 56h104l-8 48H66z" fill="#9aa5b1" stroke="#4b5563" stroke-width="3"/><path d="M64 68h92l-5 34H69z" fill="#5bb8f0"/><path d="M58 64h-12M162 64h12" stroke="#4b5563" stroke-width="6"/><path d="M110 98V76" stroke="#e11d48" stroke-width="4"/><path d="M104 81l6-10 6 10z" fill="#e11d48"/><path d="M82 74v22M138 74v22" stroke="#2563eb" stroke-width="4"/><path d="M76 91l6 10 6-10zM132 91l6 10 6-10z" fill="#2563eb"/><path d="M90 46q-6-8 0-14M110 46q6-8 0-16M130 46q-6-8 0-14" stroke="#aab" stroke-width="4" fill="none" stroke-linecap="round"/></svg>',
+rod:'<svg viewBox="0 0 220 150"><rect width="220" height="150" fill="#f3efe6"/><rect x="8" y="132" width="52" height="10" fill="#555"/><rect x="160" y="132" width="52" height="10" fill="#555"/><path d="M34 132V42M186 132V42" stroke="#777" stroke-width="5"/><rect x="28" y="40" width="164" height="8" rx="3" fill="#d2691e"/><path d="M52 48v14M82 48v10M138 48v10M168 48v14" stroke="#222" stroke-width="3"/><circle cx="52" cy="49" r="3" fill="#ffd93d"/><circle cx="82" cy="49" r="3" fill="#ffd93d"/><circle cx="138" cy="49" r="3" fill="#ffd93d"/><circle cx="168" cy="49" r="3" fill="#ffd93d"/><rect x="103" y="98" width="14" height="34" fill="#fde68a"/><path d="M110 98q-11-16 0-36 11 20 0 36z" fill="#ff8a00"/><path d="M110 96q-5-9 0-18 5 9 0 18z" fill="#ffe14d"/><path d="M96 138l8 3M124 137l-8 4" stroke="#222" stroke-width="3"/></svg>'
+};
+const figs=a=>`<div class="figs">${a.map((k,i)=>`<figure>${SC[k]}<figcaption>${'АБВ'[i]}</figcaption></figure>`).join('')}</div>`;
+
+/* ===== ЗАДАНИЯ ===== */
+function build(v){
+  const o=v==1,T=[];
+  const mc=(n,q,opts)=>({n,q,pts:1,parts:[{k:''+n,lab:''+n,kind:'mcq',pts:1,opts,how:'Выбери один вариант ответа.'}]});
+  const SEL=['твёрдое','жидкое','газообразное'];
+  if(o){
+    T.push(mc(1,'При повышении температуры скорость движения молекул…',[['уменьшается',0],['увеличивается',1],['остаётся неизменной',0]]));
+    T.push(mc(2,'На каком способе теплопередачи основано водяное отопление?',[['теплопроводность',0],['конвекция',1],['излучение',0]]));
+    T.push(mc(3,'В каком из приведённых примеров внутренняя энергия увеличивается путём совершения механической работы над телом?',[['нагревание гвоздя при забивании его в доску',1],['нагревание металлической ложки в горячей воде',0],['таяние льда',0]]));
+    T.push(mc(4,'Температура плавления свинца равна 327 °C. Переведите эту температуру в кельвины.',[['54 K',0],['600 K',1],['327 K',0],['273 K',0]]));
+  }else{
+    T.push(mc(1,'Если внутренняя энергия тела уменьшилась, то это говорит о том, что…',[['температура тела увеличилась',0],['температура тела уменьшилась',1],['температура тела не изменилась',0]]));
+    T.push(mc(2,'Выберите правильное утверждение:',[['диффузия быстрее всего происходит в газах',1],['диффузия медленнее всего протекает в жидкостях',0],['диффузия во всех агрегатных состояниях протекает одинаково',0]]));
+    T.push(mc(3,'Когда в горячий чай опускают холодную ложку…',[['чай совершает работу и его внутренняя энергия уменьшается',0],['над ложкой совершается работа и её внутренняя энергия увеличивается',0],['внутренняя энергия ложки и чая изменяется в результате теплопередачи',1]]));
+    T.push(mc(4,'Температура плавления калия равна 63 °C. Переведите эту температуру в кельвины.',[['−210 K',0],['336 K',1],['63 K',0],['363 K',0]]));
+  }
+  // 5
+  T.push({n:5,q:'Определи виды теплопередачи, которые осуществляются в явлениях, изображённых на рисунках А, Б, В.',pts:2,svg:figs(o?['fire','spoons','samovar']:['sun','pot','rod']),
+    parts:[{k:'5',lab:'5',kind:'tri',pts:2,opts:['теплопроводность','конвекция','излучение'],ans:o?['излучение','теплопроводность','конвекция']:['излучение','конвекция','теплопроводность'],how:'Для каждого рисунка выбери из списка один вид теплопередачи. Все три верно — 2 балла, два верно — 1 балл.'}]});
+  // 6
+  const g6=o?G({x0:0,x1:9,xs:1,xg:1,y0:0,y1:400,ys:50,yg:25,p:[[0,150],[3,327],[6,327],[8,400]],ey:[327],xl:'t, мин',yl:'t, °C'})
+            :G({x0:0,x1:22,xs:2,xg:1,y0:0,y1:800,ys:100,yg:50,p:[[0,50],[3,660],[7,660],[10,760],[13,660],[17,660],[21,50]],nm:['A','B','C','D','E','F','K'],ey:[660],xl:'t, мин',yl:'t, °C'});
+  T.push({n:6,q:o?'На рисунке дан график нагревания и плавления свинца.':'На рисунке дан график нагревания и плавления алюминия.',pts:3,svg:g6,parts:o?[
+    {k:'6a',lab:'6a',kind:'num',pts:1,ans:3,q:'a) Сколько времени нагревалось вещество от 150 °C до температуры плавления?',how:'Запиши число — время в минутах (без единиц).'},
+    {k:'6b',lab:'6b',kind:'num',pts:1,ans:3,q:'b) Сколько времени длился процесс плавления?',how:'Запиши число — время в минутах (без единиц).'},
+    {k:'6c',lab:'6c',kind:'sel',pts:1,opts:PROC,ans:'плавление',q:'c) Назови процесс на втором участке графика.',how:'Выбери название процесса из списка.'}]:[
+    {k:'6a',lab:'6a',kind:'num',pts:1,ans:50,q:'a) Какова была температура алюминия, когда начали наблюдение?',how:'Запиши число — температуру в °C (без единиц).'},
+    {k:'6b',lab:'6b',kind:'num',pts:1,ans:4,q:'b) Сколько времени длился процесс плавления?',how:'Запиши число — время в минутах (без единиц).'},
+    {k:'6c',lab:'6c',kind:'sel',pts:1,opts:PROC,ans:'плавление',q:'c) Назови процесс на участке графика BC.',how:'Выбери название процесса из списка.'}]});
+  // 7-9
+  const tx=(n,q,how,c1,c2)=>({n,q,pts:2,parts:[{k:''+n,lab:''+n,kind:'txt',pts:2,crit:[c1,c2],how}]});
+  if(o){
+    T.push(tx(7,'Известно, что при нагревании стального шарика его объём увеличивается. Что происходит с молекулами данного вещества? Объясни причину этого явления. Что изменилось в характере движения и взаимодействия молекул?','Напиши 2 коротких предложения: (1) что происходит с самими молекулами; (2) что происходит с расстоянием между ними.',/молекул\S*[^.]*(не\s+(измен|увелич|расшир|меня)|остал|прежн)|не\s+(измен|увелич|меня)\S*[^.]*молекул/,/(расстоян|промежут)\S*[^.]*(увелич|больш|возраст|рост)|(увелич|больш)\S*[^.]*(расстоян|промежут)/));
+    T.push(tx(8,'Можно ли изменить температуру кипения воды? Как можно изменить температуру кипения воды? Объясни свой ответ.','Начни со слова «Да» или «Нет», затем напиши, как именно это сделать (1–2 предложения).',/\bда\b|можно/,/давлен/));
+    T.push(tx(9,'На Земле в огромных масштабах осуществляется круговорот воздушных масс. С каким видом теплопередачи это преимущественно связано? Объясни данный процесс.','Напиши 2 коротких предложения: (1) название вида теплопередачи; (2) что происходит с тёплым и холодным воздухом.',/конвекц/,/(поднима|опуска|вверх|вниз|нагрев|неравномерн|разн\S*\s+(температур|скорост)|тепл\S*\s+воздух|холодн\S*\s+воздух)/));
+  }else{
+    T.push(tx(7,'В кастрюле-скороварке температура кипения воды равна 115 °C при давлении 170 кПа. Почему, ведь мы знаем, что температура кипения воды равна 100 °C?','Напиши 1–2 предложения: от какой физической величины зависит температура кипения и чем она здесь отличается от нормальной.',/давлен/,/(выш|повыш|увелич|больш|рост)/));
+    T.push(tx(8,'Алюминий имеет температуру плавления 660 °C. Меняется ли температура в процессе плавления тела? Объясни, на что тратится получаемая энергия.','Начни со слова «Да» или «Нет», затем напиши 1 предложение: на что тратится энергия.',/\bнет\b|не\s+(меня|измен)|постоян|остает/,/(решетк|разруш|потенциал|взаимодейств|связ|скорост\S*[^.]*молекул|молекул\S*[^.]*скорост|энерги\S*\s+молекул)/));
+    T.push(tx(9,'Если снять крышку с кипящего чайника, то на ней можно увидеть капельки воды. Как называется этот процесс? Как можно объяснить их появление?','Напиши: (1) название процесса одним словом; (2) 1 предложение — что происходит с паром.',/конденсац/,/пар\S*[^.]*(остыва|охлажд|холодн|соприка|касаясь|превращ)|(остыва|охлажд|холодн)/));
+  }
+  // 10
+  const gs=o?[[[0,50],[3,0],[7,0],[10,-30]],[[0,50],[4,-10],[7,-10],[10,-30]],[[0,50],[10,-30]],[[0,-30],[3,-10],[7,-10],[10,50]]]
+            :[[[0,10],[10,70]],[[0,70],[3,40],[7,40],[10,10]],[[0,10],[3,20],[7,20],[10,70]],[[0,10],[3,40],[7,40],[10,70]]];
+  const ax=o?{y0:-40,y1:60}:{y0:-20,y1:80};
+  const g4=gs.map((p,i)=>`<figure>${G(Object.assign({W:260,H:190,s:1,x0:0,x1:10,xs:2,xg:1,ys:20,yg:10,p,xl:'t, мин',yl:'t, °C'},ax))}<figcaption>${'АБВГ'[i]}</figcaption></figure>`).join('');
+  T.push({n:10,q:o?'Вещество имеет температуру плавления −10 °C. Небольшое количество этого вещества охлаждают от 50 °C до −30 °C в морозильной камере. Рассмотри графики А–Г, на которых показано, как температура вещества могла бы меняться со временем.':'Вещество имеет температуру плавления 40 °C. Небольшое количество этого вещества нагревают от 10 °C до 70 °C. Рассмотри графики А–Г, на которых показано, как температура вещества могла бы меняться со временем.',pts:3,svg:`<div class="g4">${g4}</div>`,parts:[
+    {k:'10a',lab:'10a',kind:'sel',pts:1,opts:['А','Б','В','Г'],ans:o?'Б':'Г',q:o?'a) Какой график правильно показывает процесс охлаждения вещества?':'a) Какой график правильно показывает процесс нагревания вещества?',how:'Выбери букву графика.'},
+    {k:'10b',lab:'10b',kind:'sel',pts:1,opts:SEL,ans:o?'жидкое':'твёрдое',q:o?'b) В каком агрегатном состоянии находилось вещество в начале охлаждения (при 50 °C)?':'b) В каком агрегатном состоянии находилось вещество в начале нагревания (при 10 °C)?',how:'Выбери состояние из списка.'},
+    {k:'10c',lab:'10c',kind:'sel',pts:1,opts:PROC,ans:o?'кристаллизация':'плавление',q:'c) Какой процесс происходит на горизонтальном участке верного графика?',how:'Выбери название процесса из списка.'}]});
+  // 11
+  const d=o?{liq:'Подсолнечное масло',V:'2,5',rho:920,c:1700,t1:25,tk:225,q:'3,9·10⁷',m:2.3,Q1:782,Q2:89700,Q:90482,vf:'масла'}
+           :{liq:'Спирт',V:'2',rho:790,c:2400,t1:22,tk:78,q:'2,9·10⁷',m:1.58,Q1:212.352,Q2:45820,Q:46032.352,vf:'спирта'};
+  const FA=['m = ρ·V','m = V / ρ','m = ρ / V','m = ρ + V'],FB=['Q = c·m·(t₂ − t₁)','Q = c·m·t₂','Q = q·m','Q = m / (c·Δt)'],FC=['Q = q·m','Q = c·m·Δt','Q = m / q','Q = q / m'];
+  T.push({n:11,q:`${d.liq} объёмом ${d.V} л налито в сосуд и имеет температуру ${d.t1} °C.<br><span class="mut">Дано: ρ = ${d.rho} кг/м³; c = ${d.c} Дж/(кг·°C); температура кипения t<sub>к</sub> = ${d.tk} °C; удельная теплота сгорания q = ${d.q} Дж/кг; 1 л = 0,001 м³.</span>`,pts:7,parts:[
+    {k:'11a1',lab:'11a: формула',kind:'sel',pts:1,opts:FA,ans:FA[0],q:'a) Выбери формулу для расчёта массы.',how:'Выбери формулу из списка.'},
+    {k:'11a2',lab:'11a: масса, кг',kind:'num',pts:1,ans:d.m,q:`Определи массу ${d.vf}.`,how:'Запиши число в килограммах (кг), без единиц. Дробную часть можно через запятую.'},
+    {k:'11b1',lab:'11b: формула',kind:'sel',pts:1,opts:FB,ans:FB[0],q:`b) Выбери формулу количества теплоты для нагревания до температуры кипения.`,how:'Выбери формулу из списка.'},
+    {k:'11b2',lab:'11b: Q нагр., кДж',kind:'num',pts:1,ans:d.Q1,q:`Определи, какое количество теплоты необходимо, чтобы нагреть ${d.vf==='масла'?'масло':'спирт'} до температуры кипения.`,how:'Запиши число в килоджоулях (кДж), без единиц. Округли до 0,1 при необходимости.'},
+    {k:'11c1',lab:'11c: формула',kind:'sel',pts:1,opts:FC,ans:FC[0],q:`c) Выбери формулу количества теплоты, выделяющейся при полном сгорании топлива.`,how:'Выбери формулу из списка.'},
+    {k:'11c2',lab:'11c: Q сгор., кДж',kind:'num',pts:1,ans:d.Q2,q:`Вычисли, какое количество теплоты выделится при полном сгорании всего ${d.vf}.`,how:'Запиши число в килоджоулях (кДж), без единиц.'},
+    {k:'11d',lab:'11d: Q общее, кДж',kind:'num',pts:1,ans:d.Q,q:'d) Вычисли общее количество теплоты, которое было затрачено (нагревание + сгорание).',how:'Запиши число в килоджоулях (кДж), без единиц.'}]});
+  return T;
+}
+
+/* ===== ОТРИСОВКА ===== */
+function partHTML(p,multi){
+  const b=multi||p.kind=='tri'?` <span class="br">${br(p.pts)}</span>`:'';
+  let h=`<div class="part">`;
+  if(p.q)h+=`<b>${p.q}${b}</b>`;
+  if(p.kind=='mcq')h+=shuf(p.opts).map(o=>`<label class="opt"><input type="radio" name="p_${p.k}" value="${o[0]}" data-ok="${o[1]}"><span>${o[0]}</span></label>`).join('');
+  if(p.kind=='sel')h+=`<select id="p_${p.k}"><option value="">— выбери ответ —</option>${p.opts.map(o=>`<option>${o}</option>`).join('')}</select>`;
+  if(p.kind=='num')h+=`<input id="p_${p.k}" inputmode="decimal" autocomplete="off" placeholder="введи число">`;
+  if(p.kind=='txt')h+=`<textarea id="p_${p.k}" rows="3" maxlength="400" placeholder="Запиши ответ здесь"></textarea>`;
+  if(p.kind=='tri')h+=`<div class="tri">${[0,1,2].map(i=>`<div><label class="f">Рисунок ${'АБВ'[i]}</label><select id="p_${p.k}_${i}"><option value="">— выбери —</option>${p.opts.map(o=>`<option>${o}</option>`).join('')}</select></div>`).join('')}</div>`;
+  return h+`<div class="how">✎ ${p.how}</div></div>`;
+}
+function render(T){
+  return T.map(t=>{const multi=t.parts.length>1;
+    return `<section class="card"><h3>Задание ${t.n} <span class="br">${br(t.pts)}</span></h3><div class="q">${t.q}</div>${t.svg||''}${t.parts.map(p=>partHTML(p,multi)).join('')}</section>`}).join('');
+}
+
+/* ===== ПРОВЕРКА ===== */
+const nrm=s=>(s||'').toLowerCase().replace(/ё/g,'е');
+function grade(p){
+  let a='',s=0;
+  if(p.kind=='mcq'){const e=$(`input[name="p_${p.k}"]:checked`);if(e){a=e.value;s=e.dataset.ok==='1'?p.pts:0}}
+  else if(p.kind=='sel'){a=$('#p_'+p.k).value;s=a===p.ans?p.pts:0}
+  else if(p.kind=='num'){a=$('#p_'+p.k).value.trim();const n=parseFloat(a.replace(/\s/g,'').replace(',','.'));if(!isNaN(n)&&Math.abs(n-p.ans)<=Math.max(1e-6,Math.abs(p.ans)*0.01))s=p.pts}
+  else if(p.kind=='txt'){a=$('#p_'+p.k).value.trim();const t=nrm(a);s=Math.min(p.pts,p.crit.filter(r=>r.test(t)).length)}
+  else if(p.kind=='tri'){const v=[0,1,2].map(i=>$(`#p_${p.k}_${i}`).value);const n=v.filter((x,i)=>x===p.ans[i]).length;s=n==3?2:n==2?1:0;a=v.map((x,i)=>'АБВ'[i]+': '+(x||'—')).join('; ')}
+  return {k:p.lab,a:a||'—',s,m:p.pts};
+}
+
+/* ===== СОСТОЯНИЕ ===== */
+let S={fio:'',kl:'',v:0,T:[],t0:0,att:1,run:false,done:false,viol:0,warn:0,tick:null};
+function chk(){$('#next').disabled=!($('#fio').value.trim().length>=5&&/\s/.test($('#fio').value.trim())&&$('#kl').value&&$('#vr').value)}
+['fio','kl','vr'].forEach(i=>$('#'+i).addEventListener('input',chk));
+const show=id=>['s1','s2','s3','s4'].forEach(x=>$('#'+x).classList.toggle('hide',x!==id));
+$('#next').onclick=()=>{S.fio=$('#fio').value.trim().replace(/\s+/g,' ');S.kl=$('#kl').value;S.v=+$('#vr').value;show('s2');scrollTo(0,0)};
+$('#go').onclick=()=>{
+  const key='soch8_att_'+nrm(S.fio+S.kl);S.att=(+localStorage.getItem(key)||0)+1;localStorage.setItem(key,S.att);
+  S.T=build(S.v);$('#tasks').innerHTML=render(S.T);$('#who').textContent=`${S.fio} · ${S.kl} · В${S.v}`;
+  show('s3');scrollTo(0,0);S.t0=Date.now();S.run=true;baseW=innerWidth;baseH=innerHeight;
+  S.tick=setInterval(tick,500);tick();
+};
+function tick(){
+  const left=Math.max(0,MINUTES*60-Math.floor((Date.now()-S.t0)/1000));
+  const e=$('#tm');e.textContent=String(left/60|0).padStart(2,'0')+':'+String(left%60).padStart(2,'0');e.classList.toggle('low',left<300);
+  if(left<=0)finish('Время вышло');
+}
+$('#fin').onclick=$('#fin2').onclick=()=>{if(confirm('Завершить работу и отправить результат? Вернуться будет нельзя.'))finish('Учащийся завершил работу сам')};
+
+/* ===== АНТИЧИТ ===== */
+let baseW=0,baseH=0,abn=false,lastOut=0,rt=null;
+document.addEventListener('visibilitychange',()=>{if(document.hidden)leave()});
+addEventListener('pagehide',leave);
+function leave(){if(S.run&&!S.done)finish('Ушёл со страницы (свернул браузер или переключил вкладку)')}
+document.addEventListener('focusout',()=>lastOut=Date.now());
+['copy','cut','paste','contextmenu'].forEach(ev=>document.addEventListener(ev,e=>{if(S.run&&!/INPUT|TEXTAREA/.test(e.target.tagName))e.preventDefault()}));
+addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{
+  if(!S.run||S.done)return;
+  const a=document.activeElement,typing=a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName);
+  if(typing||Date.now()-lastOut<1000)return;            // экранная клавиатура
+  const bad=Math.abs(innerWidth-baseW)/baseW>0.12||Math.abs(innerHeight-baseH)/baseH>0.2;
+  if(bad&&!abn){abn=true;S.viol++;
+    if(S.viol>=2)finish('Повторное изменение размера окна');
+    else{$('#ovt').textContent='Обнаружено заметное изменение размера окна. Верни окно к прежнему размеру. При повторном нарушении работа будет завершена.';$('#ov').style.display='flex'}
+  }else if(!bad)abn=false;
+},400)});
+$('#ovb').onclick=()=>$('#ov').style.display='none';
+
+/* ===== ЗАВЕРШЕНИЕ И ОТПРАВКА ===== */
+function dev(){const u=navigator.userAgent;let os='?';
+  if(/iPhone|iPod/.test(u))os='iPhone';else if(/iPad/.test(u)||(/Mac/.test(u)&&navigator.maxTouchPoints>1))os='iPad';
+  else if(/Android/.test(u)){const m=u.match(/Android[^;]*;\s*([^)]+?)(?:\sBuild|\))/);os='Android '+(m?m[1]:'')}
+  else if(/Windows/.test(u))os='Windows';else if(/Mac/.test(u))os='Mac';else if(/Linux/.test(u))os='Linux';
+  const b=/Edg\//.test(u)?'Edge':/OPR|Opera/.test(u)?'Opera':/SamsungBrowser/.test(u)?'Samsung Browser':/YaBrowser/.test(u)?'Yandex':/Chrome|CriOS/.test(u)?'Chrome':/Firefox|FxiOS/.test(u)?'Firefox':/Safari/.test(u)?'Safari':'?';
+  const k=/iPhone|iPod|Mobi/.test(u)?'смартфон':/iPad|Tablet|Android/.test(u)?'планшет':'компьютер';
+  return `${k} · ${os} · ${b} · экран ${screen.width}×${screen.height}`}
+let payload=null;
+function finish(reason){
+  if(S.done)return;S.done=true;S.run=false;clearInterval(S.tick);
+  const spent=Math.min(MINUTES*60,Math.floor((Date.now()-S.t0)/1000));
+  const items=S.T.flatMap(t=>t.parts.map(grade)),score=items.reduce((a,i)=>a+i.s,0);
+  payload={ts:new Date().toISOString(),fio:S.fio,klass:S.kl,variant:S.v,score,max:MAXPTS,attempts:S.att,spent:String(spent/60|0)+' мин '+String(spent%60).padStart(2,'0')+' с',spentSec:spent,device:dev(),reason,violations:S.viol,items};
+  $('#ov').style.display='none';show('s4');scrollTo(0,0);
+  $('#res').innerHTML=`<p><b>${S.fio}</b> · ${S.kl} · вариант ${S.v}</p><p style="font-size:26px;color:var(--ok);text-shadow:0 0 12px var(--ok)"><b>${score} из ${MAXPTS}</b> баллов</p><p class="mut">Время: ${payload.spent} · попытка № ${S.att}<br>${reason}</p>`;
+  send();
+}
+async function send(){
+  const st=$('#st'),rb=$('#retry');rb.classList.add('hide');st.textContent='Отправка результатов…';
+  if(!/^https:\/\/script\.google\.com/.test(SCRIPT_URL)){st.textContent='⚠ Не задан адрес Google-таблицы (SCRIPT_URL). Сообщи учителю.';return}
+  for(let i=0;i<3;i++){
+    try{await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+      st.textContent='✓ Результаты отправлены учителю.';return}catch(e){await new Promise(r=>setTimeout(r,1200))}
+  }
+  st.textContent='⚠ Не удалось отправить. Проверь интернет и нажми кнопку.';rb.classList.remove('hide');
+}
+$('#retry').onclick=send;
+</script>
+</body>
+</html>
